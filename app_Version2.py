@@ -109,46 +109,7 @@ if st.sidebar.button("Run Prediction"):
     # st.write("""
     # **X-axis (Date):** Shows the time period (months/years).  
     # **Y-axis (Price USD):** Indicates the closing price of the selected cryptocurrency.
-    # """)
-
-     st.subheader("Time Series Line Chart (BTC Price Over Time)")
-    historical_close = X['Close']
-    import plotly.graph_objects as go
-    fig = go.Figure()
-    fig.add_trace(go.Scatter(
-        x=historical_close.index,
-        y=historical_close.values,
-        mode='lines',
-        name='Historical BTC Price',
-        line=dict(color='blue'),
-        hovertemplate='Date: %{x|%Y-%m-%d}<br>Price: $%{y:,.2f}<extra></extra>',
-    ))
-    fig.add_trace(go.Scatter(
-        x=forecast_df.index,
-        y=forecast_df['Predicted_Close'].values,
-        mode='lines+markers',
-        name='Predicted BTC Price',
-        line=dict(color='red', dash='dash'),
-        hovertemplate='Date: %{x|%Y-%m-%d}<br>Predicted: $%{y:,.2f}<extra></extra>',
-    ))
-    fig.update_layout(
-        title='Bitcoin (BTC) Price: Historical & Forecast',
-        xaxis_title='Date',
-        yaxis_title='Price (USD)',
-        hovermode='x unified',
-        legend=dict(yanchor="top", y=0.99, xanchor="left", x=0.01),
-        template="plotly_dark"
-    )
-    st.plotly_chart(fig, use_container_width=True)
-    st.markdown("""
-    - **X-axis**: Date (months/years)  
-    - **Y-axis**: Closing Price in USD  
-    - **Blue Line**: Real BTC historical price  
-    - **Red Dashed Line**: Model’s forecasted future price  
-    """)
-
-
-    
+    # """)    
 
     st.subheader("Raw Prediction Data")
     st.dataframe(forecast_df)
