@@ -5,7 +5,7 @@ from data_fetcher import fetch_and_prepare_data
 from predictor_model import CryptoPricePredictor
 
 st.set_page_config(page_title="Crypto Price Predictor (ML)", layout="wide")
-st.title("₿ Crypto Price Predictor (Traditional ML)")
+st.title("₿ Crypto Price Predictor")
 st.caption("Predict BTC/ETH prices using Random Forest Regressor.")
 
 # --- Sidebar ---
@@ -71,45 +71,45 @@ if st.sidebar.button("Run Prediction"):
         st.info(f"MSE on Test Set: **{mse:,.2f}**")
 
     # --- Improved Visualization (Dedicated Time Series Line Chart) ---
-    st.subheader("Time Series Line Chart (Historical and Predicted Price)")
-    historical_close = X['Close']
-    fig = go.Figure()
+    # st.subheader("Time Series Line Chart (Historical and Predicted Price)")
+    # historical_close = X['Close']
+    # fig = go.Figure()
 
-    # Historical Data Trace
-    fig.add_trace(go.Scatter(
-        x=historical_close.index,
-        y=historical_close.values,
-        mode='lines',
-        name=f'Historical {selected_crypto} Price',
-        line=dict(color='blue'),
-        hovertemplate='Date: %{x}<br>Price: $%{y:,.2f}<extra></extra>',
-    ))
+    # # Historical Data Trace
+    # fig.add_trace(go.Scatter(
+    #     x=historical_close.index,
+    #     y=historical_close.values,
+    #     mode='lines',
+    #     name=f'Historical {selected_crypto} Price',
+    #     line=dict(color='blue'),
+    #     hovertemplate='Date: %{x}<br>Price: $%{y:,.2f}<extra></extra>',
+    # ))
 
-    # Forecast Trace
-    fig.add_trace(go.Scatter(
-        x=forecast_df.index,
-        y=forecast_df['Predicted_Close'].values,
-        mode='lines+markers',
-        name='Predicted Price',
-        line=dict(color='red', dash='dash'),
-        hovertemplate='Date: %{x}<br>Predicted Price: $%{y:,.2f}<extra></extra>',
-    ))
+    # # Forecast Trace
+    # fig.add_trace(go.Scatter(
+    #     x=forecast_df.index,
+    #     y=forecast_df['Predicted_Close'].values,
+    #     mode='lines+markers',
+    #     name='Predicted Price',
+    #     line=dict(color='red', dash='dash'),
+    #     hovertemplate='Date: %{x}<br>Predicted Price: $%{y:,.2f}<extra></extra>',
+    # ))
 
-    fig.update_layout(
-        title=f'{selected_crypto} Time Series Price Plot',
-        xaxis_title="Date (Time)",
-        yaxis_title="Price (USD)",
-        hovermode="x unified",
-        legend=dict(yanchor="top", y=0.99, xanchor="left", x=0.01),
-        template="plotly_white",
-        margin=dict(l=30, r=30, t=50, b=30)
-    )
+    # fig.update_layout(
+    #     title=f'{selected_crypto} Time Series Price Plot',
+    #     xaxis_title="Date (Time)",
+    #     yaxis_title="Price (USD)",
+    #     hovermode="x unified",
+    #     legend=dict(yanchor="top", y=0.99, xanchor="left", x=0.01),
+    #     template="plotly_white",
+    #     margin=dict(l=30, r=30, t=50, b=30)
+    # )
 
-    st.plotly_chart(fig, use_container_width=True)
-    st.write("""
-    **X-axis (Date):** Shows the time period (months/years).  
-    **Y-axis (Price USD):** Indicates the closing price of the selected cryptocurrency.
-    """)
+    # st.plotly_chart(fig, use_container_width=True)
+    # st.write("""
+    # **X-axis (Date):** Shows the time period (months/years).  
+    # **Y-axis (Price USD):** Indicates the closing price of the selected cryptocurrency.
+    # """)
 
     st.subheader("Raw Prediction Data")
     st.dataframe(forecast_df)
