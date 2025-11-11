@@ -5,7 +5,7 @@ from data_fetcher import fetch_and_prepare_data
 from predictor_model import CryptoPricePredictor
 
 st.set_page_config(page_title="Crypto Price Predictor (ML)", layout="wide")
-st.title("₿ Crypto Price Predictor (Traditional ML)")
+st.title("₿ Crypto Price Predictor")
 st.caption("Predict BTC/ETH prices using Random Forest Regressor.")
 
 # --- Sidebar ---
